@@ -52,3 +52,7 @@ void ObjectRegistry::deleteObject(Object *object) {
 CollisionReactor *ObjectRegistry::getCollisionReactor() {
     return collisionReactor;
 }
+
+void ObjectRegistry::addExternalObject(Object *object) {
+    objectList->push_back(object);
+}

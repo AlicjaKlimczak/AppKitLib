@@ -25,6 +25,8 @@ public:
     Object* createGfxObject(string name, int type, string texturesFile, int frameWidth, int posX, int posY, int width, int height);
     Object* createTextObject(string name, int type, int posX, int posY, int fontSize, string fontFile);
 
+    void addExternalObject(Object *object);
+
     void registerCollisionListener(int from, int to, const boost::function<bool(Object*, Object*)> callback);
 
     void renderObjects();
