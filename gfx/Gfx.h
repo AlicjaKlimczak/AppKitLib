@@ -28,6 +28,9 @@ public:
     SDL_Renderer *getRenderer();
 
     tuple<int, int> getMousePosition();
+
+    int getWindowWidth();
+    int getWindowHeight();
 };
 
 

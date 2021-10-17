@@ -9,7 +9,7 @@
 using namespace std;
 
 Gfx::Gfx(string title, int windowWidth, int windowHeight) {
-    this->windowHeight = windowHeight;
+    this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -45,4 +45,12 @@ tuple<int, int> Gfx::getMousePosition() {
     int x, y;
     SDL_GetMouseState(&x, &y);
     return make_tuple(x, y);
+}
+
+int Gfx::getWindowWidth() {
+    return windowWidth;
+}
+
+int Gfx::getWindowHeight() {
+    return windowHeight;
 }
