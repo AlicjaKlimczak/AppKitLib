@@ -4,11 +4,14 @@
 
 #include "Object.h"
 #include "SDL_rect.h"
+#include <boost/uuid/uuid_generators.hpp> // generators
+#include <boost/uuid/uuid_io.hpp>         // streaming operators etc.
 
 Object::Object(string name, int type, ObjectRegistry *objectRegistry, int posX, int posY, int width, int height) {
     this->objectRegistry = objectRegistry;
     this->objectName = name;
     this->objectType = type;
+    this->uuid = boost::uuids::random_generator()();
 }
 
 bool Object::registerMoveTo(int x, int y) {
@@ -41,4 +44,8 @@ void Object::deleteObject() {
 
 string Object::getName() {
     return objectName;
+}
+
+boost::uuids::uuid Object::getUuid() {
+    return this->uuid;
 }

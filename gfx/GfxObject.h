@@ -23,11 +23,11 @@ public:
 
     bool moveBy(int x, int y);
 
-    void render();
+    void render() override;
 
     SDL_Rect *getCoordinates() override;
 
-    void deleteObject();
+    void deleteObject() override;
 };
 
 

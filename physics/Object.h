@@ -8,11 +8,13 @@
 #include <string>
 #include <SDL_rect.h>
 #include "../core/ObjectRegistry.h"
+#include <boost/uuid/uuid.hpp>
 
 using namespace std;
 
 class Object {
 private:
+    boost::uuids::uuid uuid;
     ObjectRegistry *objectRegistry;
     string objectName;
     int objectType;
@@ -33,6 +35,8 @@ public:
     bool isCollidingWith(int moveByX, int moveByY, Object *anotherObject);
 
     virtual void deleteObject();
+
+    boost::uuids::uuid getUuid();
 };
 
 

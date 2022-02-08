@@ -23,7 +23,7 @@ public:
 
     void render() override;
 
-    SDL_Rect *getCoordinates();
+    SDL_Rect *getCoordinates() override;
 
 };
 
