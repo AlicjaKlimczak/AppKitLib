@@ -53,4 +53,8 @@ SDL_Rect *TextObject::getCoordinates() {
     return Texture::getCoordinates();
 }
 
+void TextObject::tick() {
+    //no-op as text is usually not moving
+}
+
 

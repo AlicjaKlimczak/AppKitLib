@@ -18,16 +18,16 @@ using namespace std;
 class CollisionReactor {
 private:
     ObjectRegistry *objectRegistry;
-    map<tuple<int, int>, boost::function<bool(Object*, Object*)>> *eventHandlers;
+    map<tuple<int, int>, boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)>> *eventHandlers;
 public:
     explicit CollisionReactor(ObjectRegistry *objectRegistry);
-    void registerCollisionListener(int from, int to, const boost::function<bool(Object*, Object*)> callback);
+    void registerCollisionListener(int from, int to, const boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)> callback);
 
-    bool registerMoveTo(Object *movingObject, int x, int y);
+    bool registerMoveTo(shared_ptr<Object> movingObject, int x, int y);
 
-    bool callHandlers(Object* from, Object* to);
+    bool callHandlers(shared_ptr<Object> from, shared_ptr<Object> to);
 
-    bool hasHandlerFor(Object *movingObject, Object *anotherObject);
+    bool hasHandlerFor(shared_ptr<Object> movingObject, shared_ptr<Object>anotherObject);
 };
 
 #endif //APPKITLIB_COLLISIONREACTOR_H

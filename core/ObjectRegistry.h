@@ -18,24 +18,27 @@ using namespace std;
 class ObjectRegistry {
 private:
     Gfx *gfx;
-    list<Object*> *objectList;
+    list<shared_ptr<Object>> *objectList;
     CollisionReactor *collisionReactor;
+    bool listOfObjectsChanged;
 public:
     explicit ObjectRegistry(Gfx *gfx);
-    Object* createGfxObject(string name, int type, string texturesFile, int frameWidth, int posX, int posY, int width, int height);
+
     Object* createTextObject(string name, int type, int posX, int posY, int fontSize, string fontFile);
 
-    void addExternalObject(Object *object);
+    void addObject(shared_ptr<Object> object);
 
-    void registerCollisionListener(int from, int to, const boost::function<bool(Object*, Object*)> callback);
+    void registerCollisionListener(int from, int to, boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)> callback);
 
     void renderObjects();
 
-    list<Object*>* getObjects();
+    list<shared_ptr<Object>>* getObjects();
 
-    void deleteObject(Object *object);
+    void deleteObject(shared_ptr<Object> object);
 
     CollisionReactor *getCollisionReactor();
+
+    void tick();
 };
 
 

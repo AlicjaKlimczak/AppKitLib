@@ -25,6 +25,8 @@ public:
 
     SDL_Rect *getCoordinates() override;
 
+    void tick() override;
+
 };
 
 

@@ -6,7 +6,7 @@
 #include "GfxObject.h"
 
 GfxObject::GfxObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, string textureFile, int frameWidth, int posX, int posY, int width, int height) : Object(name, type, objectRegistry, posX, posY, width, height) {
-    texture = new Texture(gfx, textureFile.c_str(), frameWidth);
+    texture = shared_ptr<Texture>(new Texture(gfx, textureFile.c_str(), frameWidth));
     texture->setDimensions(width, height);
     texture->setCoordinate(posX, posY);
 }
@@ -31,5 +31,4 @@ SDL_Rect* GfxObject::getCoordinates() {
 
 void GfxObject::deleteObject() {
     Object::deleteObject();
-    delete texture;
 }

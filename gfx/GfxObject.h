@@ -17,7 +17,7 @@ using namespace std;
 
 class GfxObject : public Object {
 private:
-    Texture* texture;
+    shared_ptr<Texture> texture;
 public:
     GfxObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, string textureFile, int frameWidth, int posX, int posY, int width, int height);
 

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Object {
+class Object : public enable_shared_from_this<Object> {
 private:
     boost::uuids::uuid uuid;
     ObjectRegistry *objectRegistry;
@@ -32,11 +32,13 @@ public:
 
     string getName();
 
-    bool isCollidingWith(int moveByX, int moveByY, Object *anotherObject);
+    bool isCollidingWith(int moveByX, int moveByY, shared_ptr<Object> anotherObject);
 
     virtual void deleteObject();
 
     boost::uuids::uuid getUuid();
+
+    virtual void tick() = 0;
 };
 
 

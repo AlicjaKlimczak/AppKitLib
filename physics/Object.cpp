@@ -15,10 +15,10 @@ Object::Object(string name, int type, ObjectRegistry *objectRegistry, int posX, 
 }
 
 bool Object::registerMoveTo(int x, int y) {
-    return objectRegistry->getCollisionReactor()->registerMoveTo(this, x, y);
+    return objectRegistry->getCollisionReactor()->registerMoveTo(shared_from_this(), x, y);
 }
 
-bool Object::isCollidingWith(int moveByX, int moveByY, Object *anotherObject) {
+bool Object::isCollidingWith(int moveByX, int moveByY, shared_ptr<Object> anotherObject) {
     SDL_Rect *thisCoordinates = getCoordinates();
     SDL_Rect *anotherObjectsCoordinates = anotherObject->getCoordinates();
     int moveToX = thisCoordinates->x + moveByX;
@@ -39,7 +39,7 @@ int Object::getType() {
 }
 
 void Object::deleteObject() {
-    objectRegistry->deleteObject(this);
+    objectRegistry->deleteObject(this->shared_from_this());
 }
 
 string Object::getName() {
