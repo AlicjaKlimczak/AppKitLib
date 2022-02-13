@@ -21,13 +21,13 @@ private:
     map<tuple<int, int>, boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)>> *eventHandlers;
 public:
     explicit CollisionReactor(ObjectRegistry *objectRegistry);
-    void registerCollisionListener(int from, int to, const boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)> callback);
+    void registerCollisionListener(int from, int to, const boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)>& callback);
 
-    bool registerMoveTo(shared_ptr<Object> movingObject, int x, int y);
+    bool registerMoveTo(const shared_ptr<Object>& movingObject, int x, int y);
 
-    bool callHandlers(shared_ptr<Object> from, shared_ptr<Object> to);
+    bool callHandlers(const shared_ptr<Object>& from, const shared_ptr<Object>& to);
 
-    bool hasHandlerFor(shared_ptr<Object> movingObject, shared_ptr<Object>anotherObject);
+    bool hasHandlerFor(const shared_ptr<Object>& movingObject, const shared_ptr<Object>&anotherObject);
 };
 
 #endif //APPKITLIB_COLLISIONREACTOR_H
