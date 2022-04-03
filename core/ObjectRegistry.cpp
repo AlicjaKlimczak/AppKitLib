@@ -17,7 +17,7 @@ ObjectRegistry::ObjectRegistry(Gfx *gfx) {
 void ObjectRegistry::renderObjects() {
     SDL_RenderClear(gfx->getRenderer());
 
-    for (shared_ptr <Object> object: *objectList) {
+    for (const shared_ptr <Object>& object: *objectList) {
         object->render();
     }
 
@@ -36,10 +36,7 @@ list <shared_ptr<Object>> *ObjectRegistry::getObjects() {
     return objectList;
 }
 
-void
-ObjectRegistry::registerCollisionListener(int from, int to, const boost::function<bool(shared_ptr < Object > ,
-                                                                                       shared_ptr <
-                                                                                       Object > )> callback) {
+void ObjectRegistry::registerCollisionListener(int from, int to, const boost::function<bool(shared_ptr <Object>, shared_ptr<Object>)>& callback) {
     this->collisionReactor->registerCollisionListener(from, to, callback);
 }
 
@@ -55,15 +52,17 @@ void ObjectRegistry::tick() {
     }
 }
 
-void ObjectRegistry::deleteObject(shared_ptr <Object> object) {
+void ObjectRegistry::deleteObject(const shared_ptr <Object>& object) {
     listOfObjectsChanged = true;
     objectList->remove(object);
+    cout << "After remove size: " << objectList->size() << endl;
 }
 
 CollisionReactor *ObjectRegistry::getCollisionReactor() {
     return collisionReactor;
 }
 
-void ObjectRegistry::addObject(shared_ptr <Object> object) {
+void ObjectRegistry::addObject(const shared_ptr <Object>& object) {
     objectList->push_back(object);
+    cout << "After push_back size: " << objectList->size() << endl;
 }

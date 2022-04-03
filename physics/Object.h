@@ -20,19 +20,19 @@ private:
     int objectType;
 public:
 
-    Object(string name, int type, ObjectRegistry *objectRegistry, int posX, int posY, int width, int height);
+    Object(string name, int type, ObjectRegistry *objectRegistry, float posX, float posY, int width, int height);
 
-    virtual SDL_Rect *getCoordinates() = 0;
+    virtual SDL_FRect *getCoordinates() = 0;
 
     virtual void render() = 0;
 
-    bool registerMoveTo(int x, int y);
+    bool registerMoveTo(float x, float y);
 
     int getType();
 
     string getName();
 
-    bool isCollidingWith(int moveByX, int moveByY, shared_ptr<Object> anotherObject);
+    bool isCollidingWith(float moveByX, float moveByY, shared_ptr<Object> anotherObject);
 
     virtual void deleteObject();
 

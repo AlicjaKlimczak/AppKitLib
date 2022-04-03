@@ -7,20 +7,20 @@
 #include <boost/uuid/uuid_generators.hpp> // generators
 #include <boost/uuid/uuid_io.hpp>         // streaming operators etc.
 
-Object::Object(string name, int type, ObjectRegistry *objectRegistry, int posX, int posY, int width, int height) {
+Object::Object(string name, int type, ObjectRegistry *objectRegistry, float posX, float posY, int width, int height) {
     this->objectRegistry = objectRegistry;
     this->objectName = name;
     this->objectType = type;
     this->uuid = boost::uuids::random_generator()();
 }
 
-bool Object::registerMoveTo(int x, int y) {
+bool Object::registerMoveTo(float x, float y) {
     return objectRegistry->getCollisionReactor()->registerMoveTo(shared_from_this(), x, y);
 }
 
-bool Object::isCollidingWith(int moveByX, int moveByY, shared_ptr<Object> anotherObject) {
-    SDL_Rect *thisCoordinates = getCoordinates();
-    SDL_Rect *anotherObjectsCoordinates = anotherObject->getCoordinates();
+bool Object::isCollidingWith(float moveByX, float moveByY, shared_ptr<Object> anotherObject) {
+    SDL_FRect *thisCoordinates = getCoordinates();
+    SDL_FRect *anotherObjectsCoordinates = anotherObject->getCoordinates();
     int moveToX = thisCoordinates->x + moveByX;
     int moveToY = thisCoordinates->y + moveByY;
     if (moveToY >= anotherObjectsCoordinates->y && moveToY <= anotherObjectsCoordinates->y + anotherObjectsCoordinates->h

@@ -5,13 +5,13 @@
 #include "string"
 #include "GfxObject.h"
 
-GfxObject::GfxObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, string textureFile, int frameWidth, int posX, int posY, int width, int height) : Object(name, type, objectRegistry, posX, posY, width, height) {
+GfxObject::GfxObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, string textureFile, int frameWidth, float posX, float posY, int width, int height) : Object(name, type, objectRegistry, posX, posY, width, height) {
     texture = shared_ptr<Texture>(new Texture(gfx, textureFile.c_str(), frameWidth));
     texture->setDimensions(width, height);
     texture->setCoordinate(posX, posY);
 }
 
-bool GfxObject::moveBy(int x, int y) {
+bool GfxObject::moveBy(float x, float y) {
     bool canMoveTo = Object::registerMoveTo(x, y);
 
     if (canMoveTo) {
@@ -25,7 +25,7 @@ void GfxObject::render() {
     texture->render();
 }
 
-SDL_Rect* GfxObject::getCoordinates() {
+SDL_FRect* GfxObject::getCoordinates() {
     return texture->getCoordinates();
 }
 

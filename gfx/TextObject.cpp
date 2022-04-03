@@ -6,7 +6,7 @@
 #include "SDL_ttf.h"
 #include "../core/GameException.h"
 
-TextObject::TextObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, int posX, int posY, int fontSize, string fontFile) : Texture(gfx), Object(name, type, objectRegistry, posX, posY, 0, 0) {
+TextObject::TextObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, float posX, float posY, int fontSize, string fontFile) : Texture(gfx), Object(name, type, objectRegistry, posX, posY, 0, 0) {
     font = TTF_OpenFont(fontFile.c_str(), fontSize); //this opens a font style and sets a size
     if (font == nullptr) {
         throw GameException(SDL_GetError());
@@ -49,7 +49,7 @@ void TextObject::render() {
     }
 }
 
-SDL_Rect *TextObject::getCoordinates() {
+SDL_FRect *TextObject::getCoordinates() {
     return Texture::getCoordinates();
 }
 

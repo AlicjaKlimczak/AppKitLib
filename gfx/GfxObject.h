@@ -19,13 +19,13 @@ class GfxObject : public Object {
 private:
     shared_ptr<Texture> texture;
 public:
-    GfxObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, string textureFile, int frameWidth, int posX, int posY, int width, int height);
+    GfxObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, string textureFile, int frameWidth, float posX, float posY, int width, int height);
 
-    bool moveBy(int x, int y);
+    bool moveBy(float x, float y);
 
     void render() override;
 
-    SDL_Rect *getCoordinates() override;
+    SDL_FRect *getCoordinates() override;
 
     void deleteObject() override;
 };

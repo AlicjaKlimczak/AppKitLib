@@ -14,21 +14,21 @@ class Texture;
 
 class Texture {
 private:
-    SDL_Point center;
+    SDL_FPoint center;
     int frame_width;
     int frame_height;
     double angle = 0;
 protected:
     SDL_Renderer *renderer;
     SDL_Texture *game_texture;
-    SDL_Rect coordinates;
+    SDL_FRect coordinates;
 public:
     explicit Texture(Gfx *gfx);
     explicit Texture(Gfx *gfx, const char *file, int frame_width);
-    void setCoordinate(int x, int y);
+    void setCoordinate(float x, float y);
     void setDimensions(int w, int h);
 
-    SDL_Rect * getCoordinates();
+    SDL_FRect * getCoordinates();
 
     SDL_Texture *get_texture();
 

@@ -26,15 +26,15 @@ public:
 
     Object* createTextObject(string name, int type, int posX, int posY, int fontSize, string fontFile);
 
-    void addObject(shared_ptr<Object> object);
+    void addObject(const shared_ptr<Object>& object);
 
-    void registerCollisionListener(int from, int to, boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)> callback);
+    void registerCollisionListener(int from, int to, const boost::function<bool(shared_ptr<Object>, shared_ptr<Object>)>& callback);
 
     void renderObjects();
 
     list<shared_ptr<Object>>* getObjects();
 
-    void deleteObject(shared_ptr<Object> object);
+    void deleteObject(const shared_ptr<Object>& object);
 
     CollisionReactor *getCollisionReactor();
 

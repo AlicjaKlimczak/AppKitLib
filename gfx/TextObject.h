@@ -16,14 +16,14 @@ private:
     SDL_Color color;
     bool textHasBeenSet;
 public:
-    TextObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, int posX, int posY, int fontSize, string fontFile);
+    TextObject(string name, int type, ObjectRegistry *objectRegistry, Gfx *gfx, float posX, float posY, int fontSize, string fontFile);
 
     void setText(string text);
     void setTextAtPosition(string text, int x, int y);
 
     void render() override;
 
-    SDL_Rect *getCoordinates() override;
+    SDL_FRect *getCoordinates() override;
 
     void tick() override;
 

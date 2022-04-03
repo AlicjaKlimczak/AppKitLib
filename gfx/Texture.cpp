@@ -33,12 +33,16 @@ Texture::Texture(Gfx* gfx, const char *file, int frame_width) {
     coordinates.x = 0;
     coordinates.y = 0;
 
-    SDL_QueryTexture(this->game_texture, nullptr, nullptr, &(coordinates.w), &(coordinates.h));
+    int width = 0;
+    int height = 0;
+    SDL_QueryTexture(this->game_texture, nullptr, nullptr, &width, &height);
+    coordinates.w = (float) width;
+    coordinates.h = (float) height;
     center.x = coordinates.w / 2;
     center.y = coordinates.h / 2;
 }
 
-void Texture::setCoordinate(int x, int y) {
+void Texture::setCoordinate(float x, float y) {
     this->coordinates.x = x;
     this->coordinates.y = y;
 }
@@ -48,7 +52,7 @@ void Texture::setDimensions(int w, int h) {
     this->coordinates.h = h;
 }
 
-SDL_Rect * Texture::getCoordinates() {
+SDL_FRect * Texture::getCoordinates() {
     return &coordinates;
 }
 
@@ -68,7 +72,7 @@ void Texture::render(int frame) {
         frameDimensions->w = frame_width;
         frameDimensions->h = frame_height;
     }
-    int result = SDL_RenderCopyEx(renderer, game_texture, frameDimensions, &coordinates, angle, &center, SDL_FLIP_NONE);
+    int result = SDL_RenderCopyExF(renderer, game_texture, frameDimensions, &coordinates, angle, &center, SDL_FLIP_NONE);
 
     delete frameDimensions;
 
